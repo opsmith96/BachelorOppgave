@@ -1,0 +1,116 @@
+{
+  "name": "TechRadar",
+  "invested": "Invested much resources",
+  "children": [
+    {
+      "name": "Augmented Reality 2",
+      "invested": "Invested little resources",
+      "size": 5000,
+      "desc": "Augmented reality (AR) is a direct or indirect live view of a physical, real-world environment whose elements are augmented by computer-generated perceptual information, ideally across multiple sensory modalities, including visual, auditory, haptic, somatosensory, and olfactory.[1] The overlaid sensory information can be constructive (i.e. additive to the natural environment) or destructive (i.e. masking of the natural environment) and is spatially registered with the physical world such that it is perceived as an immersive aspect of the real environment.[2] In this way, Augmented reality alters one’s current perception of a real world environment, whereas virtual reality replaces the real world environment with a simulated one.[3][4] Augmented Reality is related to two largely synonymous terms: mixed reality and computer-mediated reality.",
+      "children": [
+        {
+          "name": "Hva er Augmented Reality2",
+          "invested": "Invested little resources",
+          "size": 5000,
+          "desc": "",
+          "children": []
+        },
+        {
+          "name": "Hva syntes NewTechLab om Ar2",
+          "invested": "Invested little resources",
+          "size": 5000,
+          "desc": "",
+          "children": []
+        },
+        {
+          "name": "Se video av AR2",
+          "invested": "Invested little resources",
+          "size": 5000,
+          "desc": "",
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "Virtual Reality2",
+      "invested": "Invested no resources",
+      "size": 5000,
+      "desc": "",
+      "children": [
+        {
+          "name": "Hva er Virtual Reality2",
+          "invested": "Invested no resources",
+          "size": 5000,
+          "desc": "VR",
+          "children": []
+        },
+        {
+          "name": "Hva tenker NewTechLab om VR2",
+          "invested": "Invested no resources",
+          "size": 5000,
+          "desc": "",
+          "children": [
+            {
+              "name": "Hva tenker NewTechLab2",
+              "invested": "Invested no resources",
+              "size": 5000,
+              "desc": "",
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Artificial Intelligence2",
+      "invested": "Invested no resources",
+      "size": 400,
+      "desc": "",
+      "children": [
+        {
+          "name": "Hva er AI2",
+          "invested": "Invested no resources",
+          "size": 4000,
+          "desc": "",
+          "children": []
+        },
+        {
+          "name": "NTL om AI2",
+          "invested": "Invested no resources",
+          "size": 7500,
+          "desc": "",
+          "children": []
+        },
+        {
+          "name": "Maskinlæring2",
+          "invested": "Invested no resources",
+          "size": 7500,
+          "desc": "",
+          "children": [
+            {
+              "name": "Maskinlæringsspill2",
+              "invested": "Invested no resources",
+              "size": 2000,
+              "desc": "",
+              "children": []
+            },
+            {
+              "name": "Video2",
+              "invested": "Invested no resources",
+              "size": 10000,
+              "desc": "",
+              "children": []
+            },
+            {
+              "name": "NTL test2",
+              "invested": "Invested no resources",
+              "size": 3000,
+              "desc": "",
+              "children": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

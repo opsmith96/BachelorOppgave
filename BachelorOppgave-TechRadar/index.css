@@ -1,0 +1,427 @@
+/*styling of main elements starts*/
+* {
+    font-family: 'FedraPro', sans-serif;
+}
+
+@font-face {
+    font-family: FedraPro;
+    src: url("font/FedraSansPro-Light.woff") format("woff");
+    font-style: normal;
+}
+
+html, body {
+    height: 100vh;
+    background-color: rgb(32, 32, 32);
+    margin: 0px;
+}
+
+.container {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    left: 0;
+    top: 0;
+    text-align: center;
+    overflow: hidden;
+}
+
+#svgID {
+    width: 100%;
+    height: 100%;
+}
+
+img {
+    width: 100%;
+    cursor: pointer;
+}
+
+.xxx {
+    font: 25px "FedraPro", sans-serif;
+    text-align: center;
+    word-wrap: break-word;
+    pointer-events: none;
+}
+
+/*styling of main elements ends*/
+
+/*styling of d3 components starts*/
+.node {
+    cursor: pointer;
+    stroke: #ffffff;
+    stroke-opacity: 0;
+    transition: stroke-opacity 1s;
+}
+
+.node:hover {
+    stroke: #ffffff;
+    stroke-opacity: 100;
+    stroke-width: 3px;
+}
+
+.node--leaf {
+    fill: lightgray;
+}
+
+.label {
+    font: 25px "FedraPro", sans-serif;
+    font-weight: bolder;
+    text-anchor: middle;
+}
+
+.legend-color g {
+    fill: rgb(255, 255, 255);
+}
+
+.cell text {
+    font: 14px "FedraPro", sans-serif;
+    font-weight: lighter;
+    text-shadow: none;
+    text-anchor: start;
+}
+
+.label,
+.node--root,
+.node--leaf {
+    pointer-events: all;
+}
+
+.graph-svg-component {
+    background-color: black;
+}
+
+.legend-size {
+    fill: white;
+}
+
+/*styling of d3 components ends*/
+
+/*styling of text and img in the top left corner starts*/
+#techRadarText {
+    font: 50px "FedraPro", sans-serif;
+    position: absolute;
+    color: white;
+    top: -30px;
+    left: 15px;
+}
+
+#dnbImg {
+    position: absolute;
+    width: 250px;
+    left: -50px;
+    top: -40px;
+}
+
+/*styling of text and img in the top left corner ends*/
+
+/*styling of smaller containers and the elements inside starts*/
+#techRadar {
+    background-color: lightgray;
+    width: 200px;
+}
+
+#tabContainer {
+    width: 60%;
+    height: 20px;
+    position: absolute;
+    left: 20%;
+    top: 10px;
+}
+
+.badge {
+    position: absolute;
+    border: 0px solid black;
+    background-color: rgba(0, 0, 0, 0.95);
+    z-index: 1;
+    overflow: scroll;
+    display: none;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+}
+
+.divClass {
+    width: 60%;
+    height: 70%;
+    margin: auto;
+    margin-top: 15%;
+    margin-bottom: 50%;
+    text-align: left;
+    color: white;
+}
+
+.badge2 {
+    position: relative;
+    width: 100%;
+    padding: 5px;
+    border-bottom: none;
+    background-color: rgb(32, 32, 32);
+    text-align: center;
+    color: white;
+    transition: background-color linear 0.1s;
+}
+
+.json {
+    position: relative;
+    width: 33.3%;
+    height: 100%;
+    font-weight: bold;
+    display: inline-block;
+    cursor: pointer;
+    color: white;
+}
+
+.json:before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: white;
+    visibility: hidden;
+    -webkit-transform: scaleX(0);
+    transform: scaleX(0);
+    -webkit-transition: all 0.3s ease-in-out 0s;
+    transition: all 0.3s ease-in-out 0s;
+}
+
+.json:hover:before {
+    visibility: visible;
+    -webkit-transform: scaleX(1);
+    transform: scaleX(1);
+}
+
+@-webkit-keyframes open {
+    from {
+        height: 0;
+    }
+    to {
+        height: 100%;
+    }
+}
+
+@-webkit-keyframes close {
+    from {
+        height: 100%;
+    }
+    to {
+        height: 0;
+    }
+}
+
+#closeDiv {
+    position: fixed;
+    cursor: pointer;
+    left: 80%;
+    top: 10%;
+    width: 50px;
+    height: 50px;
+    display: none;
+    z-index: 1;
+    transition: transform .25s ease-in-out;
+}
+
+#closeDiv:hover {
+    transform: rotate(180deg);
+}
+
+#closeDiv:before {
+    content: "";
+    position: absolute;
+    display: block;
+    margin: auto;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 50px;
+    height: 0;
+    border-top: 5px solid white;
+    transform: rotate(45deg);
+    transform-origin: center;
+}
+
+#closeDiv:after {
+    content: "";
+    position: absolute;
+    display: block;
+    margin: auto;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 50px;
+    height: 0;
+    border-top: 5px solid white;
+    transform: rotate(-45deg);
+    transform-origin: center;
+}
+
+/*styling of smaller containers and the elements inside ends*/
+
+/*styling of the navigation menu starts*/
+#search {
+    width: 50%;
+    margin-top: 180px;
+    margin-bottom: 70px;
+    display: inline-block;
+    border: 0px;
+    border-radius: 4px;
+    text-align: center;
+    outline: none;
+    background-color: rgb(32, 32, 32);
+    color: white;
+    font-size: 140px;
+    border-bottom: 5px solid rgba(255, 255, 255, 0.1);
+}
+
+::placeholder {
+    color: white;
+    font-size: 140px;
+    transition: text-shadow 0.3s;
+}
+
+#search:hover::-webkit-input-placeholder {
+    color: transparent;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+}
+
+.sideNav {
+    height: 0;
+    width: 100%;
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    background-color: rgb(32, 32, 32);
+    overflow-x: hidden;
+    transition: 0.5s;
+    border: none;
+}
+
+.sideNav a {
+    text-decoration: none;
+    color: black;
+    display: block;
+    transition: 0.3s;
+}
+
+button:focus {
+    outline: 0;
+}
+
+span:focus {
+    outline: 0;
+}
+
+/* Style side menu starts*/
+.sideMenu {
+    height: 0;
+    width: 100%;
+    position: absolute;
+    z-index: 1;
+    top: 0;
+    background-color: rgb(32, 32, 32);
+    overflow-x: hidden;
+    transition: 0.5s;
+    border: none;
+}
+
+#hamburgerBtn {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: white;
+    font-size: 30px;
+    cursor: pointer;
+    z-index: 1;
+}
+
+#hamburgerBtn:focus {
+
+}
+
+.section {
+    color: white;
+    position: absolute;
+    width: 40%;
+    left: 30%;
+    top: 50px;
+}
+
+/*styling of the navigation menu ends*/
+
+.wrapper {
+    z-index: 1;
+    display: block;
+    position: absolute;
+    top: 45px;
+    right: 70px;
+    transform: translate(-50%, -30%);
+    text-align: center;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+}
+
+.element {
+    width: 0;
+    height: 50px;
+    position: relative;
+    margin-bottom: 5px;
+    border: 1px solid #ffffff;
+}
+
+#one {
+    height: 25px;
+    width: 25px;
+    border-radius: 50%;
+    border: 1px solid #fff;
+}
+
+#two {
+    position: relative;
+    height: 15px;
+    left: 30px;
+    top: -10px;
+    transform: rotate(-45deg);
+}
+
+/*media queries for mobile version*/
+@media screen and (max-height: 450px) {
+    .sideNav {
+        padding-top: 15px;
+    }
+
+    .sideNav a {
+        font-size: 18px;
+    }
+
+}
+
+/*media queries for mobile version*/
+@media only screen and (max-width: 500px) {
+    .sideNav {
+        height: 100%;
+        display: block;
+    }
+
+    .badge {
+        overflow: scroll;
+    }
+}
+
+@media only screen and (max-width: 850px) {
+    .xxx {
+        font: 20px "FedraPro", sans-serif;
+    }
+}
+
+@media only screen and (max-width: 650px) {
+    .xxx {
+        font: 15px "FedraPro", sans-serif;
+    }
+}

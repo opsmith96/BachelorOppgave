@@ -1,0 +1,108 @@
+{
+  "name": "TechRadar",
+  "invested": "Invested much resources",
+  "children": [
+    {
+      "name": "Drone-Teknologi",
+      "invested": "Invested little resources",
+      "size": 5000,
+      "desc": "",
+      "children": [
+        {
+          "name": "Hva er Drone-Teknologi",
+          "invested": "Invested little resources",
+          "size": 5000,
+          "desc": "",
+          "children": []
+        },
+        {
+          "name": "Hva syntes NewTechLab?",
+          "invested": "Invested little resources",
+          "size": 5000,
+          "desc": "",
+          "children": []
+        },
+        {
+          "name": "Se video av hvordan Droner kan brukes",
+          "invested": "Invested little resources",
+          "size": 4000,
+          "desc": "",
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "Tingenes Internett",
+      "invested": "Invested much resources",
+      "size": 5000,
+      "desc": "",
+      "children": [
+        {
+          "name": "Hva er IOT",
+          "invested": "Invested much resources",
+          "size": 5000,
+          "desc": "",
+          "children": []
+        },
+        {
+          "name": "Hva tenker NewTechLab om IOT",
+          "invested": "Invested much resources",
+          "size": 5000,
+          "desc": "",
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "Some big thing we dont know about yet",
+      "invested": "Invested no resources",
+      "size": 400,
+      "desc": "",
+      "children": [
+        {
+          "name": "what is this big ting",
+          "invested": "Invested no resources",
+          "size": 4000,
+          "desc": "",
+          "children": []
+        },
+        {
+          "name": "NTL om the big thing",
+          "invested": "Invested no resources",
+          "size": 7500,
+          "desc": "",
+          "children": []
+        },
+        {
+          "name": "another sub big thing ",
+          "invested": "Invested no resources",
+          "size": 7500,
+          "desc": "",
+          "children": [
+            {
+              "name": "stuff",
+              "invested": "Invested no resources",
+              "size": 2000,
+              "desc": "",
+              "children": []
+            },
+            {
+              "name": "more stuff",
+              "invested": "Invested no resources",
+              "size": 10000,
+              "desc": "",
+              "children": []
+            },
+            {
+              "name": "even more stuff",
+              "invested": "Invested no resources",
+              "size": 3000,
+              "desc": "",
+              "children": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

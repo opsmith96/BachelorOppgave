@@ -1,0 +1,203 @@
+{
+  "name": "TechRadar",
+  "invested": "Invested much resources",
+  "children": [
+    {
+      "name": "Blockchain Teknologi",
+      "invested": "Invested much resources",
+      "size": 4000,
+      "desc": "",
+      "children": [
+        {
+          "name": "Video om blockchain",
+          "invested": "Invested much resources",
+          "size": "4000",
+          "desc": "<iframe width=\"660\" height=\"415\" src=\"https://www.youtube.com/embed/r43LhSUUGTQ\" frameborder=\"0\" allow=\"autoplay; encrypted-media\" allowfullscreen></iframe>",
+          "children": []
+        },
+        {
+          "name": "Hva tenker NewTech lab om blockchain",
+          "invested": "Invested much resources",
+          "size": 4000,
+          "desc": "<img src='img/blockchain.jpg'>",
+          "children": []
+        },
+        {
+          "name": "Hva er blockchain",
+          "invested": "Invested much resources",
+          "size": "4000",
+          "desc": "En blockchain er en distribuert database hvor hver node automatisk verifiserer endringer og tilføyelser som gjøres på noen av de andre nodene. Teknologien omtales på norsk gjerne som blokkjede.Den opprinnelige blockchainen utgjør databasen for den elektroniske valutaen bitcoin. Siden bitcoin ble introdusert i 2009 har en rekke alternative blockchains blitt publisert eksperimentelt.En blockchain kan brukes som en digital distribuert regnskapsbok for økonomiske transaksjoner. En blokk inneholder et sett transaksjoner samt tidsstempel og hash som sikrer at blokken ikke kan endres uten at det oppdages. Neste blokk inneholder lenke til den foregående og dennes hash. Hver blokk replikeres til alle noder i et nett slik at hver node inneholder hele regnskapsboken. Ingen er original. Det er derfor ikke behov for noen tiltrodd tredjepart som har ansvar for de økonomiske transaksjonene.Til å begynne med fokuserte man bare på blockchain-teknologien som fundamentet for elektronisk betalingsmiddel (bitcoin med flere). Nå er mye av oppmerksomheten rettet mot andre muligheter som ligger i denne teknologien, og da i særdeleshet smarte kontrakter.\n<img src='img/blokkjede.gif'>\n",
+          "children": []
+        },
+        {
+          "name": "Blockchain prosjekter",
+          "invested": "Invested much resources",
+          "size": 1000,
+          "desc": "hallo dette er en tekst",
+          "children": [
+            {
+              "name": "Prosjekt 1",
+              "invested": "Invested much resources",
+              "size": 1000,
+              "desc": "hallo dette er en tekst",
+              "children": []
+            },
+            {
+              "name": "Prosjekt 2",
+              "invested": "Invested much resources",
+              "size": 2000,
+              "desc": "",
+              "children": []
+            },
+            {
+              "name": "Prosjekt 3",
+              "invested": "Invested much resources",
+              "size": 1000,
+              "desc": "hallo dette er en tekst",
+              "children": [
+                {
+                  "name": "superheroes - prosjekt 3",
+                  "invested": "Invested much resources",
+                  "size": 1000,
+                  "desc": "hallo dette er en tekst",
+                  "children": []
+                },
+                {
+                  "name": "prosjektbeskrivelse - prosjekt 3",
+                  "invested": "Invested much resources",
+                  "size": 1000,
+                  "desc": "hallo dette er en tekst",
+                  "children": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Kryptovaluta",
+          "invested": "Invested much resources",
+          "size": 500,
+          "desc": "",
+          "children": [
+            {
+              "name": "Hva er Kryptovaluta",
+              "invested": "Invested much resources",
+              "size": "500",
+              "desc": "Kryptovaluta er et digitalt betalingsmiddel som benytter seg av kryptografi for å sikre transaksjoner og kontroll over generering av nye valutaenheter. Kryptovalutaer benytter seg av desentralisert kontroll i motsetning til regulære valutaer hvor kontrollen normalt er sentralisert hos en statsbank. Bitcoin er den mest kjente kryptovalutaen.",
+              "children": []
+            },
+            {
+              "name": "Bitcoin",
+              "invested": "Invested much resources",
+              "size": "500",
+              "desc": "Bitcoin (av «bit» og engelske «coin» = mynt) er en digital valuta laget i 2009 av Satoshi Nakamoto. Navnet refererer også til åpen kildekode-programvaren han designet som gjør bruk av valutaen, og peer-to-peer-nettverket som det utgjør.\n\nDen totale bitcoin-økonomien ble 18. november 2012 verdsatt til 122 252 993 USD (95 780 478 EUR). 16. mars 2016 var verdien økt til 6,3 milliarder USD (5,7 milliarder EUR) \n\nTil forskjell fra de fleste andre valutaer avhenger ikke bitcoin av noen sentral utsteder. Bitcoin bruker en distribuert database spredt ut over noder i et peer-to-peer-nettverk til å loggføre transaksjoner, og bruker kryptografi for å tilby grunnleggende sikkerhetsfunksjoner, som å forsikre at bitcoins bare kan brukes av personen som eier dem, og aldri mer enn én gang.\n\nBitcoins design tillater anonymt eierskap og anonyme overføringer av verdier. Bitcoins kan lagres på en personlig datamaskin i form av en wallet-fil, eller hos en tredjeparts wallet-tjeneste. I begge tilfeller kan bitcoins sendes over internett til hvem som helst med en bitcoin-adresse. Bitcoins peer-to-peer-topologi og fravær av sentralstyring gjør det umulig for noen autoritet, statlige eller andre, å manipulere verdien av valutaen ved å produsere mer av den og dermed indusere inflasjon.\n\nBitcoin er en av de første implementeringene av kryptovaluta, et konsept først beskrevet i 1998 av Wei Dai på mailinglisten til Cypherpunk.",
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Augmented Reality (AR)",
+      "invested": "Invested little resources",
+      "size": 5000,
+      "desc": "",
+      "children": [
+        {
+          "name": "Hva er AR?",
+          "invested": "Invested little resources",
+          "size": "5000",
+          "desc": "utvidet virkelighet eller augmented reality er en teknologi som kombinerer data fra den fysiske verden med virtuell data, for eksempel ved bruk av grafikk og lyd. Man får et ekstra lag av informasjon. Den ekstra informasjonen vil typisk ikke erstatte virkeligheten, men utvide den på en eller flere måter.\n<img src=\"img/ar.jpg\">",
+          "children": []
+        },
+        {
+          "name": "Hva syntes NewTechLab om Ar",
+          "invested": "Invested little resources",
+          "size": "5000",
+          "desc": "ar er ganske kult",
+          "children": []
+        },
+        {
+          "name": "Se video av AR",
+          "invested": "Invested little resources",
+          "size": "5000",
+          "desc": "<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/RSXqyOi_GYY\" frameborder=\"0\" allow=\"autoplay; encrypted-media\" allowfullscreen></iframe>",
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "Virtual Reality(VR)",
+      "invested": "Invested no resources",
+      "size": 5000,
+      "desc": "",
+      "children": [
+        {
+          "name": "Hva er Virtual Reality",
+          "invested": "Invested no resources",
+          "size": "5000",
+          "desc": "\nInstitutt for energiteknikk (IFE) har et eget senter i Halden (Halden Virtual Reality Centre) der det forskes på industrielle anvendelser av VR-teknologi. Bildet er fra 2009.\n\nEn fallskjermhopper i den amerikanske marinen trener på å hoppe i fallskjerm i 2006, ved hjelp av blant annet et head-mounted display (HMD, «skjermbriller») som viser en kunstig virkelighet som etterlikner synsopplevelsen ved et virkelig hopp.\nKunstig virkelighet, eller virtuell virkelighet (etter det engelske virtual reality, ofte forkortet VR), er en datateknologi som lar brukeren påvirke og bli påvirket av et dataskapt miljø som skal etterlikne en virkelighet. De fleste «miljøene» med kunstig virkelighet omfatter både syns- og lydinntrykk og blir vist på en skjerm eller gjennom et spesielt stereoskopisk apparat.\n\nMarkedet for utvidet virkelighet (AR) og VR har allerede blitt et milliard dollarmarked, og det forventes å vokse godt over et 120 milliarder dollarmarked i løpet av få år",
+          "children": []
+        },
+        {
+          "name": "Hva tenker NewTechLab om VR",
+          "invested": "Invested no resources",
+          "size": "5000",
+          "desc": "Vr er en spennende teknologi",
+          "children": []
+        }
+      ]
+    },
+    {
+      "name": "Artificial Intelligence(AI)",
+      "invested": "Invested no resources",
+      "size": 400,
+      "desc": "",
+      "children": [
+        {
+          "name": "Hva er AI",
+          "invested": "Invested no resources",
+          "size": 4000,
+          "desc": "",
+          "children": []
+        },
+        {
+          "name": "NTL om AI ",
+          "invested": "Invested no resources",
+          "size": 7500,
+          "desc": "",
+          "children": []
+        },
+        {
+          "name": "Maskinlæring",
+          "invested": "Invested no resources",
+          "size": 7500,
+          "desc": "",
+          "children": [
+            {
+              "name": "Maskinlæringsspill",
+              "invested": "Invested no resources",
+              "size": 2000,
+              "desc": "",
+              "children": []
+            },
+            {
+              "name": "Video",
+              "invested": "Invested no resources",
+              "size": 10000,
+              "desc": "",
+              "children": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "HCI",
+      "invested": "Invested little resources",
+      "desc": "",
+      "size": "20000",
+      "children": []
+    }
+  ]
+}

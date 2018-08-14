@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/showdown/1.8.6/showdown.js"></script>
+    <script src="//d3js.org/d3-scale-chromatic.v0.3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-legend/2.13.0/d3-legend.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/velocity/1.1.0/velocity.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="index.css">
+    <link rel="stylesheet" href="hamburgers.css">
+    <title>TechRadar</title>
+
+</head>
+<body>
+<!--container STARTS-->
+<div class="container" id="myContainer">
+    <div id="tabContainer"></div>
+
+    <!--search button STARTS-->
+    <div id="mySideNav" class="sideNav">
+        <input type="text" id="search" class="onhover" onkeyup="search()" placeholder="Søk"
+               title="Type in a name">
+
+        <!--here is where the navigation divs end up when produced-->
+    </div>
+    <div class="wrapper search" accesskey="s" tabindex="1" onclick="openNav()">
+        <div class="element" id="one"></div>
+        <div class="element" id="two"></div>
+    </div>
+    <!--search button ENDS-->
+
+    <!--menu button STARTS-->
+    <div id="mySideMenu" class="sideMenu">
+        <section class="about-container about-center about-content section" style="max-width:700px">
+            <h1 class="about-wide">Om oss</h1>
+            <p class="about">Hvem er New Tech Lab</p>
+            <p>New tech lab er en ny avdeling under
+                new business i DNB konsernet. De jobber med å undersøke nye teknologier<br>Test løsningen ferdig</p>
+            <h1 class="about-wide">Kontakt oss</h1>
+            <p>Du kan alltid komme innom oss
+                <br>e-post: newtech@dnb.no
+                <br>Tlf 915 04800
+            </p>
+
+        </section>
+    </div>
+    <button id="hamburgerBtn" class="hamburger hamburger--spring" accesskey="m" tabindex="2" onclick="openMenu()"
+            type="button">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+    <!--menu button ENDS-->
+
+    <div id="techRadarText"><p>TechUniverse</p></div>
+    <svg id="svgID"></svg>
+    <div id="techRadar"><!--info divs end up here when they are opened--></div>
+    <div id="closeDiv" tabindex="4" onclick="closeDiv()" onkeypress="closeDiv();"></div>
+</div>
+<!--container ENDS-->
+
+<script>
+    //sets color scheme based on inserted #hex codes
+    var scaleColor = d3.scaleOrdinal()
+        .range([d3.rgb("#19ade4"), d3.rgb('#f6a340'), d3.rgb('#ED6F59')]);
+
+    //defines the sources and sets source to default, witch is the "0-2 years until impact json"
+    var source1 = "flare2.json"; //-2 years
+    var source2 = "flare.json"; // 2-5 years
+    var source3 = "flare1.json";// 5+ years
+    var source = source1;
+
+
+    //function that allows the user to search through the menu options
+    function search() {
+        var input = document.getElementById("search");
+        var filter = input.value.toLowerCase();
+        var nodes = document.getElementsByClassName('badge2');
+        var nodes2 = document.getElementsByClassName('badge');
+
+
+        for (var i = 0; i < nodes2.length; i++) {
+            if (nodes2[i].innerText.toLowerCase().includes(filter)) {
+                nodes[i].style.display = "block";
+            } else {
+                nodes[i].style.display = "none";
+            }
+        }
+    }
+
+    //function that alerts the user after resolution is changed on client window + reloads the page based on new set resolution
+    window.onresize = function () {
+        if (alert('Denne siden beregner størrelser når den lastes inn. Når du endrer størrelsen på vinduet må siden laste inn på nytt')) {
+        }
+        else window.location.reload();
+    };
+
+    //uses client height and width to calculate size of circles
+    var width = document.body.clientWidth;
+    var height = document.body.clientHeight;
+    var marginSize;
+    if (width > height) {
+        marginSize = height;
+    }
+    else if (width < height) {
+        marginSize = width;
+    }
+
+    //creates SVG + appends group elements to SVG with attributes
+    var svg = d3.select("svg"),
+        margin = marginSize / 8,
+        diameter = marginSize,
+        g = svg.append("g").attr("transform", "translate(" + width / 2 + "," + height / 2 + ")"),
+        textContainer = d3.select("body");
+
+    //changes the contrast of SVG in the background
+    var color = d3.scaleLinear()
+        .domain([-1, 10])
+        .range(["hsl(0, 0%, 5%)", "hsl(0, 100%, 100%)"])
+        .interpolate(d3.interpolateHcl);
+
+    //d3 function to pack circles together with set margin and padding
+    var pack = d3.pack()
+        .size([diameter - margin, diameter - margin])
+        .padding(15); //padding between the circles, bigger number = bigger spaces between and lesser circles
+
+    //open side menu
+    var open = 0;
+
+    function openNav() {
+        if (open === 0) {
+            document.getElementById("mySideNav").style.height = "100%";
+            document.getElementById("hamburgerBtn").style.display = "none";
+            open = 1;
+        }
+        else if (open === 1) {
+            document.getElementById("mySideNav").style.height = "0%";
+            document.getElementById("hamburgerBtn").style.display = "block";
+            open = 0;
+        }
+    }
+
+    function openMenu() {
+
+        if (open === 0) {
+            document.getElementById("mySideMenu").style.height = "100%";
+            open = 1;
+        }
+        else if (open === 1) {
+            document.getElementById("mySideMenu").style.height = "0%";
+            open = 0;
+        }
+    }
+
+    //reload page function by using 'enter' key while focused on a specific element
+    function reload() {
+        if (event.keyCode === 13) {
+            window.location.reload();
+        }
+        else {
+            window.location.reload();
+        }
+    }
+
+    //close a div with 'escape' key
+    document.onkeydown = function (evt) {
+        evt = evt || window.event;
+        if (evt.keyCode === 27) {
+            closeDiv();
+        }
+    };
+
+    //close div function
+    function closeDiv() {
+        var elems = document.getElementsByClassName('badge');
+        for (var i = 0; i < elems.length; i += 1) {
+            elems[i].style.display = 'none';
+        }
+        document.getElementById("closeDiv").style.display = "none";
+    }
+
+    var hamburger = document.querySelector(".hamburger");
+    hamburger.addEventListener("click", function () {
+        hamburger.classList.toggle("is-active");
+        //do something else, like open/close menu
+    });
+
+    //creates the divs in the navigation bar based on how many nodes in JSON
+    function createdNavDiv(node) {
+        var a = document.getElementById("navDiv_" + node.name);
+        if (a === null ) {
+
+        var title = node.name;
+        var badge2 = document.createElement('div');
+        badge2.className = 'badge2';
+        badge2.id = "navDiv_" + node.name;
+        badge2.setAttribute("tabindex", '0++');
+        document.getElementById("mySideNav").appendChild(badge2);
+
+        badge2.addEventListener('mouseover', function () {
+            badge2.style.backgroundColor = scaleColor(node.invested);
+        });
+        badge2.addEventListener('mouseleave', function () {
+            badge2.style.backgroundColor = null;
+        });
+        badge2.innerHTML =
+            '<p>' + title + '</p>';
+
+        //open the divs from the navigation bar
+        badge2.addEventListener("click", function () {
+            //closes any open divs when opening a new one
+            var elems = document.getElementsByClassName('badge');
+            for (var i = 0; i < elems.length; i += 1) {
+                elems[i].style.display = 'none';
+            }
+            document.getElementById("div_" + node.name).style.display = "block";
+            document.getElementById("div_" + node.name).style.animation = "open 0.5s";
+            setTimeout(function () {
+                document.getElementById("closeDiv").style.display = "block";
+            }, 500)
+        });
+
+        //open divs in navigation bar with 'enter' key while focused on a specific div
+        badge2.addEventListener("keypress", function () {
+            event.preventDefault();
+            if (event.keyCode === 13) {
+                document.getElementById("div_" + node.name).style.display = "block";
+                document.getElementById("div_" + node.name).style.animation = "open 0.5s";
+                document.getElementById("closeDiv").style.display = "block";
+            }
+        });
+         }
+        else {
+         }
+    }
+
+    //creates div with content that displays when clicking node.children
+    function createDiv(node) {
+        var a = document.getElementById("div_" + node.name);
+        if (a === null) {
+        var title = node.name;
+        var desc = node.desc;
+        var converter = new showdown.Converter(); //markdown
+        var html = converter.makeHtml(desc);      //markdown
+        var badge = document.createElement('div');
+        badge.className = 'badge';
+        badge.id = "div_" + node.name;
+        badge.innerHTML =
+            '<div class="divClass">' + '<h1>' + title + '</h1>' + html + '</div>';
+        document.getElementById("techRadar").appendChild(badge);
+         }
+        else {
+        }
+    }
+
+    //creating "buttons" to navigate between json files
+    var json1 = document.createElement("div");
+    json1.className = "json";
+    json1.id = "json1";
+    json1.innerHTML = "Estimated impact in 0-2 years";
+    document.getElementById("tabContainer").appendChild(json1);
+    document.getElementById("json1").style.borderBottom = "solid 1px white";
+    json1.addEventListener("click", function () {
+        source = source1;
+        console.log(source1);
+        callJson(source1);
+        document.getElementById("json1").style.borderBottom = "solid 1px white";
+        document.getElementById("json2").style.borderBottom = "none";
+        document.getElementById("json3").style.borderBottom = "none";
+    });
+
+    var json2 = document.createElement("div");
+    json2.className = "json";
+    json2.id = "json2";
+    json2.innerHTML = "Estimated impact in 2-5 years";
+    document.getElementById("tabContainer").appendChild(json2);
+    json2.addEventListener("click", function () {
+        source = source2;
+        console.log(source2);
+        callJson(source2);
+        document.getElementById("json1").style.borderBottom = "none";
+        document.getElementById("json2").style.borderBottom = "solid 1px white";
+        document.getElementById("json3").style.borderBottom = "none";
+    });
+
+    var json3 = document.createElement("div");
+    json3.className = "json";
+    json3.id = "json3";
+    json3.innerHTML = "Estimated impact in 5 + years";
+    document.getElementById("tabContainer").appendChild(json3);
+    json3.addEventListener("click", function () {
+        source = source3;
+        console.log(source3);
+        callJson(source3);
+        document.getElementById("json1").style.borderBottom = "none";
+        document.getElementById("json2").style.borderBottom = "none";
+        document.getElementById("json3").style.borderBottom = "solid 1px white";
+    });
+
+    var callJson = function (json) {
+        d3.json(json, function (error, data) {
+            svg.selectAll("circle").remove();
+            svg.selectAll("text").remove();
+            textContainer.selectAll(".xxx").remove()
+
+            if (error) throw error;
+            var lastClickedNode;
+            //loops through nested JSON-array with node.children
+
+
+            var rec;
+            rec = function (node) {
+                if (node.children.length > 0) {
+                    for (var i = 0; i < node.children.length; i++) {
+                        rec(node.children[i]);
+                    }
+                } else {
+                    createDiv(node);
+                    createdNavDiv(node);
+                }
+            };
+            rec(data);
+
+
+            //zooming in to the clicked circle or open a fullscreen div if the circle don't have children/leaf-nodes
+            function clickFct(node) {
+                if (node.children) {
+                    zoom(node);
+                    d3.event.stopPropagation();
+                }
+
+                else if (!node.children) {
+                    zoom(node);
+                    document.getElementById("div_" + node.data.name).style.display = "block";
+                    document.getElementById("div_" + node.data.name).style.animation = "open 0.5s";
+                    document.getElementById("closeDiv").style.display = "block";
+                }
+            }
+
+            data = d3.hierarchy(data)
+                .sum(function (d) {
+                    return d.size;
+                })
+                .sort(function (a, b) {
+                    return b.value - a.value;
+                });
+
+            var focus = data,
+                nodes = pack(data).descendants(),
+                view;
+
+            var circle = g.selectAll("circle")
+                .data(nodes)
+                .enter().append("circle")
+                .attr("class", function (d) {
+                    return d.parent ? d.children ? "node" : "node node--leaf" : "node node--root";
+                })
+                .style("fill", function (d) {
+                    if (d.parent !== focus) this.style.display = "none";
+                    return d.children ? color(d.depth) : null,
+                        scaleColor(d.data.invested);
+                })
+                .style("display", function (d) {
+                    return d.parent === data ? "inline" : "none";
+                })
+                .on("click", clickFct);
+
+            //  var text = g.selectAll("text")
+            //    .data(nodes)
+            //  .enter().append("text")
+            //.attr("class", "label")
+            //.style("width", g.radius)
+            //.style("fill-opacity", function (d) {
+            //   return d.parent === data ? 1 : 0;
+            //})
+            //.style("display", function (d) {
+            //   return d.parent === data ? "inline" : "none";
+            //})
+            //.text(function (d) {
+            //  return d.data.name;
+            //});
+
+            var text2 = textContainer.selectAll(".xxx")
+                .data(nodes)
+                .enter().append("div")
+                .attr("class", "xxx")
+                .style("position", "absolute")
+                .style("display", function (d) {
+                    return d.parent === data ? "inline" : "none";
+                })
+                .html(function (d) {
+                    return d.data.name;
+                });
+
+            placeText(text2, focus);
+
+            var node = g.selectAll("circle");
+            var node2 = textContainer.selectAll(".xxx");
+
+            //categorizes circles with colors based on investment-value in JSON
+            var legendOrdinal = d3.legendColor()
+                .scale(scaleColor)
+                .shape('circle');
+            svg.append('g')
+                .classed('legend-color', true)
+                .attr('transform', 'translate(40,130)')
+                .call(legendOrdinal);
+
+            //explains circle sizes based on 'less impact' or 'more impact'
+            var sizeScale = d3.scaleOrdinal()
+                .domain(['Less impact', 'More impact'])
+                .range([5, 15]);
+            var legendSize = d3.legendSize()
+                .scale(sizeScale)
+                .shape('circle')
+                .shapePadding(0)
+                .labelAlign('end');
+            var legend2 = svg.append('g')
+                .classed('legend-size', true)
+                .attr('text-anchor', 'start')
+                .attr('transform', 'translate(40, 200)')
+                .style('font-size', '12px')
+                .call(legendSize);
+
+            //sets background-color and zooms back out to last circle when clicking on SVG outside circles
+            svg
+                .style("background", color(0))
+                .on("click", function () {
+                    if (lastClickedNode === null || lastClickedNode === undefined) {
+                        zoom(data);
+                    } else {
+                        zoom(lastClickedNode);
+                    }
+                });
+
+            // possible to make a "on start" animation here?
+            zoomTo([data.x, data.y, data.r * 2 + margin]);
+
+            function zoom(d) {
+                lastClickedNode = d.parent;
+                var focus = focus;
+                focus = d;
+                var transition = d3.transition()
+                    .duration(d3.event.altKey ? 7500 : 500)
+                    .attr('r', 0)
+                    .tween("zoom", function () {
+                        var i = d3.interpolateZoom(view, [focus.x, focus.y, focus.r * 2.28555]);
+                        return function (t) {
+                            zoomTo(i(t));
+                        };
+                    });
+                placeText(transition.selectAll("circle"), focus)
+                placeText(transition.selectAll(" .xxx"), focus)
+            }
+
+            function zoomTo(v) {
+                var k = diameter / v[2];
+                view = v;
+                node.attr("transform", function (d) {
+                    return "translate(" + (d.x - v[0]) * k + "," + (d.y - v[1]) * k + ")";
+                });
+
+                node2.style("transform", function (d) {
+                    return "translate(" + ((d.x - v[0]) * k + width / 2) + "px," + ((d.y - v[1]) * k + height / 2) + "px)";
+                });
+                circle.attr("r", function (d) {
+                    return d.r * k;
+                });
+            }
+        });
+    };
+
+    function placeText(d3nodes, focus) {
+            d3nodes
+                .filter(function (d) {
+                    return d.parent === focus || this.style.display === "inline";
+                })
+                .style("fill-opacity", function (d) {
+                    return d.parent === focus ? 1 : 0;
+                })
+                .style("width", function (d) {
+                    return d.r < 80 ? d.r * 1.8 + 80 + "px" : d.r * 1.8 + "px";
+                })
+                .style("height", function (d) {
+                    return d.r < 80 ? d.r +  80 + "px" : d.r +  "px";
+                })
+                .style("left", function (d) {
+                    return d.r < 80 ? "-" + d.r * 0.9 - 40 + "px" : "-" + d.r * 0.9 + "px";
+                })
+                .style("top", function (d) {
+                    return d.r < 80 ? "-" + d.r / 2 - 30 + "px" : "-" + d.r / 2 + "px";
+                })
+                .on("start", function (d) {
+                    if (d.parent === focus) this.style.display = "inline";
+                })
+                .on("end", function (d) {
+                    if (d.parent !== focus) this.style.display = "none";
+                });
+        }
+
+    // call all sources at the beginning to produce divs width content, important for making search work properly, creates a loading glitch
+    callJson(source2);
+    callJson(source3);
+    callJson(source1);
+
+
+    //JQuery code for search-button animation
+    $('.search').click(function () {
+        if ($('.wrapper').hasClass('active')) {
+            return false;
+        } else if ($('.wrapper').hasClass('search')) {
+            $('.wrapper').addClass('active');
+            $('#one').velocity({
+                width: '0',
+                borderRadius: '0',
+                rotateZ: '-45deg'
+            }, {
+                duration: 125,
+                easing: 'easeOutSine',
+                complete: function () {
+                    $('#one').velocity({
+                        height: '40px',
+                        left: '30px',
+                        borderWidth: '1px',
+                        top: '3px'
+                    }, {
+                        duration: 125,
+                        easing: 'easeOutSine'
+                    });
+                }
+            });
+            $('#two').velocity({
+                rotateZ: '225deg',
+                height: '40px',
+                top: '-45px'
+            }, {
+                duration: 250,
+                easing: 'easeOutSine',
+                complete: function () {
+                    $('.wrapper').removeClass('active');
+                }
+            });
+            $('.wrapper').addClass('close').removeClass('search');
+        } else if ($('.wrapper').hasClass('close')) {
+            $('.wrapper').addClass('active');
+            $('#one').velocity('reverse', {
+                duration: 125,
+                easing: 'easeOutSine',
+                complete: function () {
+                    $('#one').velocity({
+                        width: '25px',
+                        height: '25px',
+                        borderRadius: '50%'
+                    }, {
+                        duration: 125,
+                        easing: 'easeOutSine'
+                    });
+                }
+            });
+            $('#two').velocity({
+                rotateZ: '-45deg',
+                height: '15px',
+                top: '-10'
+            }, {
+                duration: 250,
+                easing: 'easeOutSine',
+                complete: function () {
+                    $('.wrapper').removeClass('active');
+                }
+            });
+            $('.wrapper').addClass('search').removeClass('close');
+        }
+    });
+</script>
+</body>
+</html>
